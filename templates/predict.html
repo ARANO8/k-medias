@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de la Consulta</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold">Resultado de la Consulta</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto mt-10 px-4 flex-grow">
+        <div class="p-6 bg-white shadow-md rounded-lg max-w-md mx-auto">
+            <h2 class="text-2xl font-semibold mb-4">Detalles</h2>
+            <p class="text-sm"><strong>Edad seleccionada:</strong> {{ age }}</p>
+            <p class="text-sm"><strong>Tipo de violencia más común:</strong> {{ predicted_type }}</p>
+            <a href="/" class="mt-4 inline-block py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700">Volver a la página principal</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4 mt-10">
+        <p class="text-sm">© 2023 Univ. Alan Israel Arnez Flores</p>
+    </footer>
+</body>
+</html>

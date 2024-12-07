@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clustering de Violencia</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-600 text-white py-6">
+      <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-bold">
+          Clustering de Violencia Contra la Mujer
+        </h1>
+        <h3 class="text-lg">Univ. Alan Israel Arnez Flores</h3>
+        <h3 class="text-lg">Univ. Marco Ronaldo Callisaya Vargas</h3>
+      </div>
+    </header>
+
+    <main class="container mx-auto mt-10 px-4">
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold mb-4">Método del Codo</h2>
+        <img
+          src="data:image/png;base64,{{ codo_data }}"
+          alt="Método del Codo"
+          class="w-full max-w-lg mx-auto border border-gray-300 shadow-md cursor-pointer"
+          onclick="openModal(this)"
+        />
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold mb-4">Gráfica de Clusters</h2>
+        <div
+          class="w-full max-w-lg mx-auto flex flex-col md:flex-row items-center gap-6"
+        >
+          <img
+            src="data:image/png;base64,{{ cluster_data }}"
+            alt="Clusters"
+            class="w-full max-w-lg border border-gray-300 shadow-md cursor-pointer"
+            onclick="openModal(this)"
+          />
+
+          <div class="p-4 bg-white shadow-md rounded-lg">
+            <h3 class="text-xl font-bold mb-2">
+              Interpretación de los Clusters
+            </h3>
+            <div class="text-sm text-gray-600">
+              {{ cluster_summary | safe }}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold mb-4">
+          Consulta el Tipo de Violencia Más Común Según la Edad
+        </h2>
+        <form
+          action="/predict"
+          method="post"
+          class="p-4 bg-white shadow-md rounded-lg max-w-md mx-auto"
+        >
+          <div class="mb-4">
+            <label for="age" class="block text-sm font-medium text-gray-700"
+              >Seleccione una edad:</label
+            >
+            <select
+              id="age"
+              name="age"
+              required
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="10-13 años">10-13 años</option>
+              <option value="14-17 años">14-17 años</option>
+              <option value="18-23 años">18-23 años</option>
+              <option value="24-29 años">24-29 años</option>
+              <option value="30-49 años">30-49 años</option>
+              <option value="50 años o más">50 años o más</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Consultar
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-4">
+      <p class="text-sm">© 2023 Univ. Alan Israel Arnez Flores</p>
+    </footer>
+    <div
+      id="imageModal"
+      class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50"
+    >
+      <img
+        id="modalImage"
+        src="#"
+        alt="Ampliado"
+        class="max-w-full max-h-full rounded-lg shadow-lg"
+      />
+      <button
+        onclick="closeModal()"
+        class="absolute top-5 right-5 text-white text-2xl"
+      >
+        &times;
+      </button>
+    </div>
+  </body>
+
+  <script>
+    // Abrir modal con la imagen seleccionada
+    function openModal(image) {
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
+      modalImage.src = image.src; // Asignar la imagen seleccionada al modal
+      modal.classList.remove("hidden"); // Mostrar el modal
+    }
+
+    // Cerrar modal
+    function closeModal() {
+      const modal = document.getElementById("imageModal");
+      modal.classList.add("hidden"); // Ocultar el modal
+    }
+  </script>
+</html>

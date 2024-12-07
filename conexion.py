@@ -1,16 +1,11 @@
-import pyodbc
+from sqlalchemy import create_engine
 
-def get_connection():
+def get_engine():
     try:
-        conn_str = (
-            "DRIVER={ODBC Driver 17 for SQL Server};"
-            "SERVER=localhost;"
-            "DATABASE=DHWviolenciaM;"
-            "Trusted_Connection=yes;"
+        engine = create_engine(
+            "mssql+pyodbc://localhost/DHWviolenciaM?driver=ODBC+Driver+17+for+SQL+Server"
         )
-        conn = pyodbc.connect(conn_str)
-        return conn
-
+        return engine
     except Exception as e:
-        print(f"Error de conexión: {e}")
+        print(f"Error al crear el motor de conexión: {e}")
         return None
